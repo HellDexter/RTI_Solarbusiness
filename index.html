@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" style="margin: 0; padding: 0; overflow-x: hidden;">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -14,6 +14,8 @@
     <meta name="description" content="CARPORTbusiness nabízí inovativní řešení solárních přístřešků pro auta s důrazem na ekologii a úsporu energie.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.carportbusiness.com/">
+    <meta name="google-site-verification" content="NAHRAĎTE_TÍMTO_VÁŠ_VERIFIKAČNÍ_KÓD" />
+    <meta name="keywords" content="solární přístřešky, nabíjení elektromobilů, carport, ekologické parkování, solární energie, elektromobilita, zelená energie, udržitelnost, obnovitelné zdroje, parkování, firemní parkování">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -35,7 +37,6 @@
     <link rel="stylesheet" href="css/section-dividers.css">
     <link rel="stylesheet" href="css/custom-buttons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="icon" href="img/favicon.ico">
     
     <!-- Vercel Analytics -->
     <script>
@@ -43,142 +44,29 @@
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
     <!-- End Vercel Analytics -->
+    <script src="js/analytics.js"></script>
+    
+    <!-- Strukturovaná data pro lepší SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CARPORTbusiness",
+      "url": "https://www.carportbusiness.com",
+      "logo": "https://www.carportbusiness.com/img/logo.png",
+      "description": "CARPORTbusiness nabízí inovativní řešení solárních přístřešků pro auta s důrazem na ekologii a úsporu energie.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+420775265819",
+        "contactType": "customer service",
+        "email": "info@carportbusiness.com"
+      }
+    }
+    </script>
+    
+    <!-- Styly navbaru byly odstraněny -->
     
     <style>
-        /* Přímé vložení stylů pro navbar - tímto obejdeme cache */
-        .navbar {
-            background-color: #07ff01;
-            padding: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            z-index: 1030;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-        
-        .navbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-        
-        @media (max-width: 991.98px) {
-            body {
-                padding-top: 70px;
-            }
-            
-            .navbar {
-                height: auto;
-                min-height: 70px;
-                padding: 2px 0;
-            }
-            
-            .navbar .container {
-                padding: 0 5px 0 0;
-                flex-wrap: nowrap;
-            }
-            
-            .navbar-brand {
-                padding: 0;
-                margin: 0;
-                flex: 1 1 auto;
-                height: 70px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                max-width: 85%;
-            }
-            
-            .logo {
-                height: 100%;
-                width: auto;
-                max-width: 100%;
-                max-height: none;
-                padding: 2px;
-                object-fit: contain;
-                object-position: left center;
-            }
-            
-            /* Důležité - zastavení zmenšení loga při scrollování */
-            .navbar.scrolled .logo {
-                height: 100%;
-            }
-            
-            .navbar.scrolled {
-                min-height: 70px;
-            }
-            
-            .navbar-toggler {
-                padding: 4px 8px;
-                margin: 0 0 0 auto;
-                border: 1px solid rgba(0, 0, 0, 0.2);
-                order: 2;
-                flex: 0 0 auto;
-            }
-            
-            .navbar-collapse {
-                background-color: #fff;
-                border-radius: 0 0 10px 10px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                position: absolute;
-                top: 100%;
-                right: 0;
-                left: 0;
-                z-index: 1020;
-                margin: 0 10px;
-            }
-            
-            .hero-section {
-                margin-top: 0;
-                padding-top: 80px;
-            }
-        }
-        
-        /* Přidávám specifické nastavení pro logo na mobilních zařízeních */
-        @media (max-width: 575.98px) {
-            .navbar {
-                min-height: 70px;
-                padding: 0;
-            }
-            
-            .navbar-brand {
-                height: 70px;
-                max-width: 85%;
-                padding-left: 5px;
-            }
-            
-            .logo {
-                height: 100%;
-                max-height: 70px;
-                width: auto;
-                max-width: 100%;
-                object-fit: contain;
-                object-position: left center;
-            }
-            
-            /* Důležité - zastavení zmenšení loga při scrollování */
-            .navbar.scrolled .logo {
-                height: 100%;
-                max-height: 70px;
-            }
-            
-            .navbar.scrolled {
-                min-height: 70px;
-            }
-            
-            .navbar-toggler {
-                padding: 4px 6px;
-                margin-right: 5px;
-            }
-        }
-        
         .hero-section {
             position: relative;
         }
@@ -324,70 +212,52 @@
         
         .roi-calculator-range::-moz-range-track {
             width: 100%;
-            height: 8px;
-            cursor: pointer;
-            background: #e9e9e9;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
     </style>
 </head>
-<body>
+<body style="margin: 0; padding: 0; padding-top: 0 !important; overflow-x: hidden;">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MR3TLM7"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="img/logo.png" alt="CARPORTbusiness Logo" class="logo">
+    <!-- Nový moderní navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-logo">
+                <img src="img/logo.png" alt="CARPORTbusiness Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">O nás</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#products">Produkty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#technology">Technologie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#for-business">Pro firmy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#roi">ROI Kalkulačka</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Kontakt</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link lang-switch dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            CZ
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="en/index.html">EN</a></li>
-                            <li><a class="dropdown-item" href="de/index.html">DE</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="navbar-links">
+                <a href="#home" class="navbar-link active">Domů</a>
+                <a href="#about" class="navbar-link">O nás</a>
+                <a href="#products" class="navbar-link">Produkty</a>
+                <a href="#technology" class="navbar-link">Technologie</a>
+                <a href="#for-business" class="navbar-link">Pro firmy</a>
+                <a href="#roi" class="navbar-link">ROI Kalkulačka</a>
+                <a href="#contact" class="navbar-link">Kontakt</a>
+                <div class="language-selector">
+                    <button class="language-btn">CZ <i class="fas fa-chevron-down"></i></button>
+                    <div class="language-dropdown">
+                        <a href="en/" class="language-item">English</a>
+                        <a href="de/" class="language-item">Deutsch</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section" style="background-color: #000000; position: relative; overflow: hidden; height: 100vh; padding: 0; width: 100%; margin: 0;">
+    <section id="home" class="hero-section" style="margin-top: 0; padding-top: 0;">
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background-color: rgba(0,0,0,0.5);"></div>
         <img src="img/hero.jpg" alt="CARPORTbusiness Hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-        <div class="container" style="position: relative; z-index: 2; height: 100%; display: flex; align-items: center;">
-            <div class="hero-content" style="max-width: 800px; padding: 0;">
-                <h1 style="color: #ffffff; font-size: 3.5rem;">Vydělávejte s novou technologií <span class="highlight-green">rychlonabíjení</span> a <span class="highlight-green">čistou energií</span> pro elektromobilitu</h1>
-                <p style="color: #ffffff; font-size: 1.2rem;">Provozujte vlastní solární CARPORTbusiness, vydělávejte na nabíjení elektromobilů a podílejte se na budoucnosti udržitelné energie. Investujte do vlastní nabíjecí stanice a vytvořte si stabilní a dlouhodobě výnosný příjem.</p>
+        <div class="container" style="position: relative; z-index: 2; height: 100%; display: flex; align-items: center; width: 100%;">
+            <div class="hero-content" style="max-width: 800px; padding: 0 15px;">
+                <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3.5rem); word-wrap: break-word;">Vydělávejte s novou technologií <span class="highlight-green">rychlonabíjení</span> a <span class="highlight-green">čistou energií</span> pro elektromobilitu</h1>
+                <p style="color: #ffffff; font-size: clamp(1rem, 2vw, 1.2rem);">Provozujte vlastní solární CARPORTbusiness, vydělávejte na nabíjení elektromobilů a podílejte se na budoucnosti udržitelné energie. Investujte do vlastní nabíjecí stanice a vytvořte si stabilní a dlouhodobě výnosný příjem.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Kontaktujte nás</a>
                     <a href="#products" class="btn btn-secondary" style="border: 2px solid #07ff01; background: transparent; color: #ffffff;">Zjistit více</a>

@@ -5,22 +5,17 @@
 // Zajištění, že se kód spustí až po načtení DOM
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializace všech komponent
-    initNavbar();
+    initNavbar(); // Přidáno zpět - nový moderní navbar
     initSmoothScroll();
     initROICalculator();
     initContactForm();
     animateOnScroll(); // Přidáno volání animační funkce
-    initDirectionalHover(); // Přidáno volání funkce pro efekt podtržení
     initScrollToTopButton(); // Přidáno volání funkce pro tlačítko návratu nahoru
     initHighlightGlow(); // Přidáno volání funkce pro glow efekt u zvýrazněných textů
     initScrollDownButton(); // Přidáno volání funkce pro animované scroll-down tlačítko
     initAboutVideo(); // Přidáno volání funkce pro automatické přehrávání videa v sekci O nás
     
-    // Přidání detekce směru scrollování
-    window.addEventListener('scroll', handleScrollDirection);
-    
-    // Počáteční kontrola aktivní sekce
-    handleScrollDirection();
+    // Odstraněno volání funkce handleScrollDirection, která byla odstraněna
     
     // Přehrávání videa o konstrukci
     const constructionVideo = document.getElementById('constructionVideo');
@@ -73,46 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/**
- * Inicializace navigačního panelu s efektem při scrollování
- */
-function initNavbar() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // Zvýraznění aktivní položky v menu podle sekce
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    if (sections.length > 0 && navLinks.length > 0) {
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            for (const section of sections) {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            }
-
-            for (const link of navLinks) {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href?.includes(current) && current !== '') {
-                    link.classList.add('active');
-                }
-            }
-        });
-    }
-}
+// Funkce initNavbar byla kompletně odstraněna
 
 /**
  * Inicializace plynulého posunu při kliknutí na odkaz v menu
@@ -128,17 +84,13 @@ function initSmoothScroll() {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                // Přidáváme offset, aby se zobrazila celá sekce a nebyla vidět část hero sekce
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                    top: targetElement.offsetTop - 20,
                     behavior: 'smooth'
                 });
                 
-                // Zavření mobilního menu při kliknutí
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse?.classList.contains('show')) {
-                    const navbarToggler = document.querySelector('.navbar-toggler');
-                    navbarToggler?.click();
-                }
+                // Kód pro zavření mobilního menu odstraněn
             }
         });
     }
@@ -336,54 +288,105 @@ function animateOnScroll() {
 }
 
 /**
- * Detekce směru najetí a odchodu myši pro efekt podtržení
+ * Inicializace nového moderního navbaru
  */
-function initDirectionalHover() {
-    const navLinks = document.querySelectorAll('.nav-link:not(.lang-switch)');
+function initNavbar() {
+    const navbar = document.querySelector('.navbar');
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    const navbarLinks = document.querySelector('.navbar-links');
+    const languageBtn = document.querySelector('.language-btn');
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const navLinks = document.querySelectorAll('.navbar-link');
     
-    for (const link of navLinks) {
-        // Výchozí směr - použijeme levý
-        link.classList.add('direction-left');
+    if (!navbar || !navbarToggle || !navbarLinks) return;
+    
+    // Funkce pro aktualizaci aktivního odkazu v navbaru podle aktuální pozice na stránce
+    const updateActiveNavLink = () => {
+        const scrollPosition = window.scrollY;
         
-        // Při najetí myši
-        link.addEventListener('mouseenter', (e) => {
-            const rect = link.getBoundingClientRect();
-            const mouseEnterX = e.clientX;
+        // Získání všech sekcí
+        const sections = document.querySelectorAll('section[id]');
+        
+        // Procházení sekcí a kontrola, zda jsou viditelné
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100; // Offset pro lepší UX
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
             
-            // Pokud myš přichází zleva, podtržení začíná zleva
-            // Pokud myš přichází zprava, podtržení začíná zprava
-            if (mouseEnterX < rect.left + rect.width / 2) {
-                link.classList.remove('direction-right');
-                link.classList.add('direction-left');
-            } else {
-                link.classList.remove('direction-left');
-                link.classList.add('direction-right');
+            // Speciální případ pro sekci kontakt
+            if (sectionId === 'contact') {
+                // Pokud jsme v sekci kontakt, vždy zvýrazníme odkaz na kontakt
+                if (scrollPosition >= sectionTop - 50 && scrollPosition < sectionTop + sectionHeight) {
+                    // Odstranění aktivní třídy ze všech odkazů
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    // Přidání aktivní třídy na odkaz kontakt
+                    const contactLink = document.querySelector('.navbar-link[href="#contact"]');
+                    if (contactLink) {
+                        contactLink.classList.add('active');
+                    }
+                    return; // Ukončíme procházení, protože jsme našli aktivní sekci
+                }
+            } else if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                // Odstranění aktivní třídy ze všech odkazů
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Přidání aktivní třídy na odkaz odpovídající aktuální sekci
+                const activeLink = document.querySelector(`.navbar-link[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+        
+        // Změna stylu navbaru při scrollování
+        if (scrollPosition > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    };
+    
+    // Sledování události scrollování pro aktualizaci aktivního odkazu
+    window.addEventListener('scroll', updateActiveNavLink);
+    
+    // Počáteční nastavení aktivního odkazu
+    updateActiveNavLink();
+    
+    // Přepínání mobilního menu
+    navbarToggle.addEventListener('click', () => {
+        navbarToggle.classList.toggle('active');
+        navbarLinks.classList.toggle('active');
+    });
+    
+    // Zavření mobilního menu po kliknutí na odkaz
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navbarToggle.classList.remove('active');
+            navbarLinks.classList.remove('active');
+        });
+    });
+    
+    // Ovládání jazykového dropdown menu
+    if (languageBtn && languageDropdown) {
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('show');
+        });
+        
+        // Zavření dropdown menu po kliknutí mimo něj
+        document.addEventListener('click', (e) => {
+            if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                languageDropdown.classList.remove('show');
             }
         });
     }
-}
-
-/**
- * Detekce směru scrollování pro aktivní položku navigace
- */
-function handleScrollDirection() {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollingDown = currentScrollTop > lastScrollTop;
     
-    // Pouze pokud se změnil směr scrollování
-    if (scrollingDown !== lastScrollDirection) {
-        lastScrollDirection = scrollingDown;
-        
-        // Aktualizace směru podtržení pro aktivní odkazy
-        const activeLinks = document.querySelectorAll('.nav-link.active');
-        
-        for (const link of activeLinks) {
-            link.classList.remove('direction-left', 'direction-right');
-            link.classList.add(scrollingDown ? 'direction-left' : 'direction-right');
-        }
-    }
-    
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    console.log('Moderní navbar inicializován');
 }
 
 /**
@@ -446,7 +449,7 @@ function initScrollDownButton() {
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
             window.scrollTo({
-                top: aboutSection.offsetTop - 80,
+                top: aboutSection.offsetTop,
                 behavior: 'smooth'
             });
         }
@@ -506,6 +509,4 @@ function initAboutVideo() {
     window.addEventListener('resize', handleVideoVisibility);
 }
 
-// Globální proměnné pro sledování scrollování
-let lastScrollTop = 0;
-let lastScrollDirection = true; // true = dolů, false = nahoru
+// Globální proměnné pro sledování scrollování byly odstraněny - souvisely s navbarem

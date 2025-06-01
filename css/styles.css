@@ -22,6 +22,10 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   background-color: #f9f9f9;
+  padding-top: 0; /* Odstraněno odsazení pro navbar */
+  margin: 0;
+  position: relative;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -124,277 +128,305 @@ span.highlight-container:hover .highlight {
   text-shadow: 0 0 10px rgba(7, 255, 1, 0.5), 0 0 20px rgba(7, 255, 1, 0.3);
 }
 
-/* Navbar */
+/* Nový moderní navbar */
 .navbar {
-  background-color: #07ff01;
-  padding: 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  z-index: 1030;
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-}
-
-.navbar .container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  padding: 0;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1), 0 0 10px rgba(7, 255, 1, 0.7), 0 0 20px rgba(7, 255, 1, 0.4);
+  border-bottom: 3px solid #07ff01;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  min-height: 70px;
 }
 
 .navbar.scrolled {
-  height: 70px;
-  background-color: rgba(7, 255, 1, 0.95);
+  background-color: rgba(0, 0, 0, 0.95);
+  border-bottom: 3px solid #07ff01;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1), 0 0 10px rgba(7, 255, 1, 0.7), 0 0 20px rgba(7, 255, 1, 0.4);
+  min-height: 60px;
 }
 
-.navbar-brand {
+
+
+.navbar-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
   height: 100%;
-  padding: 0;
-  max-height: 100%;
-  overflow: hidden;
+  width: 100%;
 }
 
-.logo {
-  height: auto;
-  max-height: 60%;
-  width: auto;
-  max-width: 220px;
-  padding: 8px 0;
-  object-fit: contain;
-  transition: all 0.3s ease;
-}
-
-.navbar.scrolled .logo {
-  max-height: 55%;
-  padding: 6px 0;
-}
-
-@media (min-width: 768px) {
-  .navbar {
-    height: 90px;
-  }
-  
-  .logo {
-    max-height: 65%;
-    padding: 8px 0;
-    max-width: 250px;
-  }
-}
-
-@media (min-width: 992px) {
-  .navbar {
-    height: 100px;
-  }
-  
-  .logo {
-    max-height: 70%;
-    padding: 10px 0;
-    max-width: 280px;
-  }
-}
-
-@media (max-width: 991.98px) {
-  body {
-    padding-top: 60px;
-  }
-  
-  .navbar {
-    height: auto;
-    min-height: 60px;
-    padding: 5px 0;
-  }
-  
-  .navbar.scrolled {
-    height: auto;
-    min-height: 50px;
-  }
-  
-  .navbar .container {
-    padding: 0 15px;
-    flex-wrap: nowrap;
-  }
-
-  .navbar-brand {
-    padding: 5px 0;
-    margin: 0;
-    flex: 0 0 auto;
-  }
-  
-  .logo {
-    max-height: 40px;
-    padding: 0;
-  }
-  
-  .navbar.scrolled .logo {
-    max-height: 35px;
-  }
-  
-  .navbar-toggler {
-    padding: 4px 8px;
-    margin: 0 0 0 auto;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    order: 2;
-  }
-  
-  .navbar-collapse {
-    background-color: #fff;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    z-index: 1020;
-    margin: 0 10px;
-  }
-  
-  .hero-section {
-    margin-top: 0;
-    padding-top: 80px;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .navbar {
-    min-height: 55px;
-  }
-  
-  .logo {
-    max-height: 35px;
-  }
-  
-  .navbar-toggler {
-    padding: 3px 6px;
-  }
-  
-  .navbar-collapse {
-    margin: 0 5px;
-  }
-}
-
-.navbar-nav {
+.navbar-logo {
   display: flex;
   align-items: center;
+  height: 40px;
+  overflow: visible;
+  margin-right: 20px;
 }
 
-.nav-item {
-  margin: 0 10px;
+.navbar-logo img {
+  width: auto;
+  height: auto;
+  max-height: none;
+  max-width: 150px;
+  transition: all 0.3s ease;
+  /* Přesná firemní zelená #07ff01 */
+  filter: brightness(0) saturate(100%) invert(83%) sepia(72%) saturate(1242%) hue-rotate(67deg) brightness(108%) contrast(104%);
 }
 
-.nav-link {
-  color: #181818;
+.navbar.scrolled .navbar-logo img {
+  /* Zachováváme stejnou velikost loga i při scrollování */
+  width: auto;
+  height: auto;
+  max-height: none;
+  max-width: 150px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 25px;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
   font-weight: 500;
+  font-size: 16px;
   position: relative;
   padding: 5px 0;
   transition: all 0.3s ease;
 }
 
-.nav-link:after {
+.navbar-link:hover {
+  color: #07ff01;
+}
+
+.navbar-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
   width: 0;
   height: 2px;
-  background-color: #181818;
+  bottom: 0;
+  left: 0;
+  background-color: #07ff01;
   transition: width 0.3s ease;
 }
 
-.nav-link.direction-left:after {
-  left: 0;
-  right: auto;
-}
-
-.nav-link.direction-right:after {
-  right: 0;
-  left: auto;
-}
-
-.nav-link:hover:after,
-.nav-link.active:after {
+.navbar-link:hover::after {
   width: 100%;
 }
 
-.nav-link:hover {
-  color: #ffffff;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+.navbar-link.active {
+  color: #07ff01;
 }
 
-.nav-link.active {
-  color: #ffffff;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+.navbar-link.active::after {
+  width: 100%;
 }
 
-.nav-link.lang-switch {
-  font-weight: 600;
-  color: #181818;
-  background-color: transparent;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 2px solid #07ff01;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.nav-link.lang-switch:hover {
-  background-color: rgba(7, 255, 1, 0.2);
-  color: #ffffff;
-  transform: translateY(-2px);
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-}
-
-.nav-link.lang-switch:after {
+.navbar-toggle {
   display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
 }
 
-.dropdown-menu {
+.navbar-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
   background-color: white;
-  border-radius: 12px;
-  border: 2px solid #07ff01;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  min-width: 80px;
-  padding: 0;
-  margin-top: 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
-.dropdown-item {
-  padding: 10px 16px;
-  text-align: center;
+.navbar-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.language-selector {
+  position: relative;
+  margin-left: 20px;
+}
+
+.language-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
   font-weight: 500;
-  color: #181818;
-  border-bottom: 1px solid rgba(7, 255, 1, 0.2);
-  transition: all 0.2s ease;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
-.dropdown-item:last-child {
-  border-bottom: none;
+.language-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.dropdown-item:hover {
-  background-color: rgba(7, 255, 1, 0.15);
-  color: #181818;
+.language-btn i {
+  margin-left: 5px;
 }
 
-.dropdown-item.active, .dropdown-item:active {
-  background-color: rgba(7, 255, 1, 0.3);
-  color: #181818;
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  padding: 10px 0;
+  min-width: 120px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1001;
 }
+
+.language-dropdown.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.language-item {
+  display: block;
+  padding: 8px 15px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.language-item:hover {
+  background-color: rgba(7, 255, 1, 0.1);
+  color: #07ff01;
+}
+
+/* Responzivní styly pro navbar */
+@media (max-width: 991.98px) {
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 80%;
+    max-width: 300px;
+    background-color: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    padding: 80px 30px 30px;
+    gap: 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  .navbar-links.active {
+    right: 0;
+  }
+
+  .navbar-link {
+    font-size: 18px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .language-selector {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .language-btn {
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .language-dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .language-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Úprava pro body s navbarem */
+body {
+  padding-top: 70px; /* Výška navbaru */
+}
+
+
+@media (max-width: 991.98px) {
+  body {
+    margin-top: 0;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  .hero-section {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  body {
+    margin-top: 0;
+  }
+}
+
+/* Navbar navigation styles removed */
+
+/* Dropdown menu styles removed */
 
 /* Hero Section */
 .hero-section {
   position: relative;
-  padding: 100px 0 100px;
+  padding: 0 0 100px; /* Odstraněn horní padding */
   background-color: #000;
-  min-height: 600px;
+  min-height: 100vh; /* Změna na 100vh pro plný výšku obrazovky */
   z-index: 1;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .hero-section::before {
@@ -430,6 +462,7 @@ span.highlight-container:hover .highlight {
   margin-bottom: 20px;
   line-height: 1.2;
   color: #ffffff;
+  word-wrap: break-word;
 }
 
 .hero-section p {
@@ -490,6 +523,7 @@ span.highlight-container:hover .highlight {
 /* About Section */
 .about-section {
   background-color: white;
+  padding-top: 80px; /* Přidán padding na horní stranu pro správné scrollování */
 }
 
 .about-image {
@@ -730,6 +764,20 @@ span.highlight-container:hover .highlight {
 textarea.form-control {
   resize: vertical;
   min-height: 120px;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-top: none;
+  height: 100vh;
+  width: 100%;
 }
 
 /* Footer */
@@ -1145,7 +1193,7 @@ textarea.form-control {
     padding-top: 150px;
     padding-bottom: 100px;
     background-color: #000;
-    background-image: url('../img/hero-background.jpg');
+    background-image: url('../img/hero.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -1505,7 +1553,377 @@ textarea.form-control {
     padding: 15px;
     max-width: 100%;
   }
+  
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-section p {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .hero-section {
+    padding: 0 0 50px;
+  }
+  
+  .hero-content {
+    padding: 0 15px;
+  }
 }
+
+@media (max-width: 768px) {
+  /* Zarovnání specifických sekcí */
+  #about, #products, #technology, #for-business, #roi-calculator, #contact,
+  .about-section, .products-section, .technology-section, .business-section, .calculator-section, .contact-section,
+  section[id], div[class*="-section"] {
+    text-align: center !important;
+  }
+  
+  /* Zarovnání všech textů */
+  * {
+    text-align: center !important;
+  }
+  
+  /* Úprava zeleného bočního pruhu */
+  .about-content[style*="border-left"],
+  div[style*="border-left: 6px solid #07ff01"],
+  [style*="border-left: 6px solid #07ff01"] {
+    border-left: none !important;
+    border-top: 4px solid #07ff01 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Efektivní využití prostoru */
+  .container, section, .row, .col, [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Odstranění zbytného prázdného prostoru */
+  body, html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .hero-heading {
+    font-size: 2.5rem !important;
+  }
+  
+  .hero-paragraph {
+    font-size: 1.1rem !important;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .hero-section {
+    padding: 80px 20px !important;
+  }
+  
+  .hero-content {
+    padding: 20px !important;
+  }
+  
+  /* Responzivní e-mailové adresy */
+  .contact-section .mb-4 {
+    word-break: normal;
+    font-size: 0.9rem;
+    overflow-wrap: normal;
+    max-width: 100%;
+    display: inline-block;
+  }
+  
+  /* Responzivní text a obsah pro mobilní zobrazení */
+  h1, h2, h3 {
+    word-wrap: normal;
+    max-width: 100%;
+    overflow-wrap: normal;
+    hyphens: none;
+    line-height: 1.3;
+    word-break: normal;
+  }
+  
+  p, li, a {
+    word-wrap: normal;
+    max-width: 100%;
+    overflow-wrap: normal;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    hyphens: none;
+    word-break: normal;
+  }
+  
+  /* Optimalizace odsazení a šířky kontejnerů */
+  .container, .row, .col, [class*="col-"] {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  /* Zarovnání obsahu v boxech */
+  .card, .box, .feature-box, .info-box {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  
+  /* Zarovnání obrázků */
+  .gallery-item, .product-image, .feature-image {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Zarovnání sekcí */
+  section {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+  
+  /* Lepší využití prostoru pro seznamy */
+  ul, ol {
+    padding-left: 0;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    list-style-position: inside;
+  }
+  
+  /* Zarovnání položek seznamu */
+  li {
+    text-align: center !important;
+    margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    display: block;
+  }
+  
+  /* Zarovnání textu v odstavcích */
+  p {
+    text-align: center !important;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Optimalizace pro karty a boxy */
+  .card, .box, .feature-box, .info-box {
+    padding: 10px 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optimalizace obsahu v boxech */
+  .card-body, .box-body, .feature-box-body, .info-box-body {
+    padding: 5px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Zarovnání obrázků v galerii */
+  .gallery-item img, .product-image img, .feature-image img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Zarovnání nadpisů sekcí */
+  .section-title, h1, h2, h3, h4, h5, h6,
+  [style*="text-align:center"],
+  [style*="text-align: center"],
+  .text-center,
+  .center {
+    text-align: center !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 15px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Zarovnání nadpisů v boxech */
+  .card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+  .box h1, .box h2, .box h3, .box h4, .box h5, .box h6,
+  .feature-box h1, .feature-box h2, .feature-box h3, .feature-box h4, .feature-box h5, .feature-box h6,
+  .info-box h1, .info-box h2, .info-box h3, .info-box h4, .info-box h5, .info-box h6,
+  .product-card h1, .product-card h2, .product-card h3, .product-card h4, .product-card h5, .product-card h6 {
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Zarovnání produktů a modelů */
+  .product-card, .model-card {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Úplné odstranění zeleného bočního pruhu */
+  [style*="border-left: 6px solid #07ff01"],
+  [style*="border-left:6px solid #07ff01"],
+  div[style*="border-left"],
+  .about-content,
+  .info-content,
+  .feature-content {
+    border-left: none !important;
+    border-top: 3px solid #07ff01 !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Odstranění zbytného prázdného prostoru po stranách */
+  .row > [class*="col-"],
+  .container > .row,
+  .container > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: center !important;
+  }
+  
+  /* Specifické styly pro ROI kalkulačku */
+  #roi-calculator, .calculator-section, .roi-calculator,
+  #roi-calculator *, .calculator-section *, .roi-calculator * {
+    text-align: center !important;
+  }
+  
+  /* Specifické styly pro kontaktní formulář */
+  #contact, .contact-section,
+  #contact *, .contact-section * {
+    text-align: center !important;
+  }
+  
+  /* Specifické styly pro sekci O nás */
+  #about, .about-section,
+  #about *, .about-section * {
+    text-align: center !important;
+  }
+  
+  /* Zabránění zbytečnému zalomování textu */
+  .section-content, .feature-content, .info-content {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Optimalizace pro nadpisy v mobilním zobrazení */
+  .section-title, .feature-title, h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    white-space: normal;
+  }
+  
+  /* Optimalizace pro odstavce */
+  p {
+    margin-bottom: 10px;
+    white-space: normal;
+  }
+  
+  /* Optimalizace pro odrážky v seznamech */
+  li {
+    margin-bottom: 5px;
+  }
+  
+  /* Optimalizace pro mobilní menu */
+  .navbar-link {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  /* Zlepšení čitelnosti textu v boxech */
+  .box-content, .card-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  /* Optimalizace pro obrázky */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Optimalizace pro dlouhé texty v boxech */
+  .feature-box p, .info-box p, .card p {
+    word-break: keep-all;
+    white-space: normal;
+  }
+  
+  /* Optimalizace pro seznamy v boxech */
+  .feature-box ul, .info-box ul, .card ul {
+    padding-left: 12px;
+  }
+  
+  /* Optimalizace pro nadpisy v boxech */
+  .feature-box h3, .info-box h3, .card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+}
+
+/* Responzivní odsazení a velikost textu */
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+  
+  .section-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  /* Zajistí, že obrázky nebudou přetékat */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
 /* Styly pro video container */
 .video-container {
