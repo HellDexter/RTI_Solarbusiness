@@ -1367,15 +1367,27 @@ textarea.form-control {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  margin-bottom: 30px;
+  height: 100%;
   transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #07ff01;
+  border-color: rgba(7, 255, 1, 0.3);
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  border-color: rgba(7, 255, 1, 0.3);
+.product-feature {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.product-feature i {
+  width: 20px;
+  margin-right: 10px;
+  color: #07ff01;
+  text-align: center;
+}
+
+.product-feature div {
+  flex: 1;
 }
 
 .product-card-header {
