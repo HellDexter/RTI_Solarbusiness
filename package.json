@@ -1,23 +1,16 @@
 {
-  "name": "rti-robotech",
+  "name": "carportbusiness",
   "version": "1.0.0",
-  "description": "Modern website for RTI Robotech Innovation",
+  "description": "CARPORTbusiness - Solární elektrárna s nabíječkami pro elektromobily",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "serve",
+    "build": "echo 'No build step needed for static site'",
+    "start": "serve"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.18",
-    "@heroicons/react": "^2.1.1",
-    "framer-motion": "^11.0.3",
-    "next": "^14.1.0",
-    "next-i18next": "^15.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "swiper": "^11.0.5"
+    "@vercel/analytics": "^1.1.1",
+    "serve": "^14.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.16",
